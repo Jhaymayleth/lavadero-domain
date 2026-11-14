@@ -52,7 +52,18 @@ src/test/java/com/lavadero/domain/
 4. Todo producto pertenece a una categoría.
 5. El stock mínimo es mayor o igual a cero.
 6. El estado del producto es coherente con el stock.
-7. El nuevo precio de venta se calcula con la regla del 35 % del CEA.
+7. Un producto descontinuado no recibe mercancía.
+8. La unicidad del código se comprueba al consultar el catálogo, fuera de una instancia aislada.
+
+La regla provisional del 35 % se encapsula en `SalePriceCalculator`:
+
+```text
+nuevoPrecioVenta = compraActual + (compraActual - compraAnterior) * 0.35
+```
+
+El resultado se redondea a dos decimales (`HALF_UP`). La interpretación debe confirmarse con el
+docente; al aplicar el precio, el agregado conserva la regla de que la venta no quede por debajo
+del costo.
 
 ---
 
@@ -63,10 +74,12 @@ mvn test
 mvn verify   # genera el reporte JaCoCo
 ```
 
-Cobertura mínima esperada en la capa de dominio: **70 %**.
+Última verificación local: **59 pruebas** aprobadas y **83,2 % de cobertura de líneas** en
+`com.lavadero.domain`. El informe completo queda en `target/site/jacoco/index.html`.
 
 ---
 
 ## 5. Documentación
 
+- [`docs/arquitectura.md`](docs/arquitectura.md): agregado, eventos, servicios y UML conceptual.
 - [`docs/lenguaje-ubicuo.md`](docs/lenguaje-ubicuo.md): glosario del negocio.

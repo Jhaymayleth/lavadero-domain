@@ -16,6 +16,14 @@
 | Estado | Disponible, por agotarse, agotado o descontinuado. | `ProductStatus` |
 | Precio recalculado | Precio de venta tras aplicar el 35 %. | `SalePriceCalculator` |
 | Producto por agotarse | Producto con stock ≤ stock mínimo. | `LowStockSpecification` |
+| Recibir mercancía | Aumentar las unidades tras aceptar un pedido. | `Product.receiveStock(...)` |
+| Vender producto | Descontar las unidades entregadas. | `Product.sell(...)` |
+| Descontinuar | Retirar el producto del catálogo y bloquear recepción. | `Product.discontinue()` |
+| Cambio de stock | Hecho registrado al recibir o vender unidades. | `StockUpdatedDomainEvent` |
+| Cambio de catálogo | Hecho registrado al crear, actualizar o retirar un producto. | `ProductCreatedDomainEvent`, `ProductUpdatedDomainEvent`, `ProductDeletedDomainEvent` |
+
+`Category`, `Supplier`, `PurchaseQuote`, `SaleOrder`, `Vehicle`, `Employee` y `WorkCubicle` son
+conceptos del CEA completo, pero no hacen parte del agregado implementado en este repositorio.
 
 ## Reglas de nombrado
 
